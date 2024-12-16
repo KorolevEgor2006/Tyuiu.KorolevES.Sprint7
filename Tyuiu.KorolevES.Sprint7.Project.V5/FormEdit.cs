@@ -11,18 +11,18 @@ using Tyuiu.KorolevES.Sprint7.Project.V5.Lib;
 
 namespace Tyuiu.KorolevES.Sprint7.Project.V5
 {
-    public partial class FormAdd : Form
+    public partial class FormEdit : Form
     {
-        public FormAdd()
+        public FormEdit()
         {
             InitializeComponent();
         }
-        private void buttonCloseAdd_KES_Click(object sender, EventArgs e)
+        private void buttonCloseEdit_KES_Click(object sender, EventArgs e)
         {
             this.Close();
         }
         public string[,] matrixedit;
-        private void buttonAddProduct_KES_Click(object sender, EventArgs e)
+        private void buttonEditProduct_KES_Click(object sender, EventArgs e)
         {
             DataService ds = new DataService();
             string[] datas = new string[9];
@@ -30,7 +30,7 @@ namespace Tyuiu.KorolevES.Sprint7.Project.V5
             datas[1] = textBoxVarNameProduct_KES.Text;
             try
             {
-                datas[2] = decimal.Parse(textBoxVarCountProduct_KES.Text).ToString(); 
+                datas[2] = decimal.Parse(textBoxVarCountProduct_KES.Text).ToString();
             }
             catch { datas[2] = "0"; }
             try
@@ -50,11 +50,24 @@ namespace Tyuiu.KorolevES.Sprint7.Project.V5
             {
                 datas[8] = decimal.Parse(textBoxVarCountSally_KES.Text).ToString();
             }
-            catch { datas[8] = "0";}
-            matrixedit = new string[(ds.AddProduct(FormMain.matrix, datas)).GetLength(0),9];
-            matrixedit = ds.AddProduct(FormMain.matrix, datas);
-            
+            catch { datas[8] = "0"; }
+            matrixedit = new string[(FormMain.matrix).GetLength(0), 9];
+            matrixedit = ds.EditProduct(FormMain.matrix, datas,FormMain.idrow);
+
             this.Close();
+        }
+
+        private void FormEdit_Load(object sender, EventArgs e)
+        {
+            textBoxVarCodeProduct_KES.Text = FormMain.matrix[FormMain.idrow,0];
+            textBoxVarNameProduct_KES.Text = FormMain.matrix[FormMain.idrow, 1];
+            textBoxVarCountProduct_KES.Text = FormMain.matrix[FormMain.idrow, 2];
+            textBoxVarCostProduct_KES.Text = FormMain.matrix[FormMain.idrow, 3];
+            textBoxDiscriptionProduct_KES.Text = FormMain.matrix[FormMain.idrow, 4];
+            textBoxVarNumProvider_KES.Text = FormMain.matrix[FormMain.idrow, 5];
+            textBoxVarFullNameProvider_KES.Text = FormMain.matrix[FormMain.idrow, 6];
+            textBoxVarDateSully_KES.Text = FormMain.matrix[FormMain.idrow, 7];
+            textBoxVarCountSally_KES.Text = FormMain.matrix[FormMain.idrow, 8];
         }
     }
 }

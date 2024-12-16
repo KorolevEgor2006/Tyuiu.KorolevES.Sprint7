@@ -12,4 +12,10 @@
     <ProjectReference Include="..\Tyuiu.KorolevES.Sprint7.Project.V5.Lib\Tyuiu.KorolevES.Sprint7.Project.V5.Lib.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="FormEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
+
 </Project>
