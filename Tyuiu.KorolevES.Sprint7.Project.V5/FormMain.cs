@@ -1,4 +1,5 @@
 using Tyuiu.KorolevES.Sprint7.Project.V5.Lib;
+using System.IO;
 using static System.Windows.Forms.DataFormats;
 namespace Tyuiu.KorolevES.Sprint7.Project.V5
 {
@@ -8,6 +9,7 @@ namespace Tyuiu.KorolevES.Sprint7.Project.V5
         {
             InitializeComponent();
             openFileDialogData_KES.Filter = "Значения, разделенные запятыми(*.csv)|*.csv|Все файлы(*.*)|*.*";
+            saveFileDialogData_KES.Filter = "Значения, разделенные запятыми(*.csv)|*.csv|Все файлы(*.*)|*.*";
         }
         string pathfileopen;
         DataService ds = new DataService();
@@ -115,5 +117,26 @@ namespace Tyuiu.KorolevES.Sprint7.Project.V5
             }
         }
 
+        private void buttonSaveFile_KES_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                saveFileDialogData_KES.FileName = "Оптовая_база.csv";
+                saveFileDialogData_KES.InitialDirectory = Directory.GetCurrentDirectory();
+                saveFileDialogData_KES.ShowDialog();
+                string path =ds.SaveFromFile(matrix,saveFileDialogData_KES.FileName);
+                if (MessageBox.Show("Открыть сохраненный файл:" +path,"Открыть файл?",MessageBoxButtons.YesNo,MessageBoxIcon.Question)==DialogResult.Yes) 
+                {
+                    System.Diagnostics.Process csv = new System.Diagnostics.Process();
+                    csv.StartInfo.FileName = "explorer.exe";
+                    csv.StartInfo.Arguments = path;
+                    csv.Start();
+                } 
+            }
+            catch
+            {
+                MessageBox.Show("Неудалось сохранить файл", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }

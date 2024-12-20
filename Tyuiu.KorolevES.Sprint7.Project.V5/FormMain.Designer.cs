@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             panelUp_KES = new Panel();
+            buttonDelete_KES = new Button();
             textBoxSearch_KES = new TextBox();
             buttonSearch_KES = new Button();
             buttonEdit_KES = new Button();
@@ -49,7 +50,8 @@
             ColumnId = new DataGridViewTextBoxColumn();
             groupBoxStatic_KES = new GroupBox();
             openFileDialogData_KES = new OpenFileDialog();
-            buttonDelete_KES = new Button();
+            saveFileDialogData_KES = new SaveFileDialog();
+            buttonSaveFile_KES = new Button();
             panelUp_KES.SuspendLayout();
             panelLeft_KES.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewData_KES).BeginInit();
@@ -57,6 +59,7 @@
             // 
             // panelUp_KES
             // 
+            panelUp_KES.Controls.Add(buttonSaveFile_KES);
             panelUp_KES.Controls.Add(buttonDelete_KES);
             panelUp_KES.Controls.Add(textBoxSearch_KES);
             panelUp_KES.Controls.Add(buttonSearch_KES);
@@ -68,6 +71,16 @@
             panelUp_KES.Name = "panelUp_KES";
             panelUp_KES.Size = new Size(1217, 109);
             panelUp_KES.TabIndex = 0;
+            // 
+            // buttonDelete_KES
+            // 
+            buttonDelete_KES.Location = new Point(219, 56);
+            buttonDelete_KES.Name = "buttonDelete_KES";
+            buttonDelete_KES.Size = new Size(104, 29);
+            buttonDelete_KES.TabIndex = 5;
+            buttonDelete_KES.Text = "Удалить";
+            buttonDelete_KES.UseVisualStyleBackColor = true;
+            buttonDelete_KES.Click += buttonDelete_KES_Click;
             // 
             // textBoxSearch_KES
             // 
@@ -221,15 +234,15 @@
             groupBoxStatic_KES.TabStop = false;
             groupBoxStatic_KES.Text = "Статистика";
             // 
-            // buttonDelete_KES
+            // buttonSaveFile_KES
             // 
-            buttonDelete_KES.Location = new Point(219, 56);
-            buttonDelete_KES.Name = "buttonDelete_KES";
-            buttonDelete_KES.Size = new Size(104, 29);
-            buttonDelete_KES.TabIndex = 5;
-            buttonDelete_KES.Text = "Удалить";
-            buttonDelete_KES.UseVisualStyleBackColor = true;
-            buttonDelete_KES.Click += buttonDelete_KES_Click;
+            buttonSaveFile_KES.Location = new Point(109, 3);
+            buttonSaveFile_KES.Name = "buttonSaveFile_KES";
+            buttonSaveFile_KES.Size = new Size(100, 29);
+            buttonSaveFile_KES.TabIndex = 6;
+            buttonSaveFile_KES.Text = "Сохранить";
+            buttonSaveFile_KES.UseVisualStyleBackColor = true;
+            buttonSaveFile_KES.Click += buttonSaveFile_KES_Click;
             // 
             // FormMain
             // 
@@ -272,5 +285,7 @@
         private TextBox textBoxSearch_KES;
         private Button buttonSearch_KES;
         private Button buttonDelete_KES;
+        private Button buttonSaveFile_KES;
+        private SaveFileDialog saveFileDialogData_KES;
     }
 }

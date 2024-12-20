@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using System.Xml;
 namespace Tyuiu.KorolevES.Sprint7.Project.V5.Lib
 {
     public class DataService
@@ -85,6 +86,27 @@ namespace Tyuiu.KorolevES.Sprint7.Project.V5.Lib
                 
             }
             return res;
+        }
+        public string SaveFromFile(string[,] matrix,string path)
+        {
+            FileInfo file = new FileInfo(path);
+            if (file.Exists) 
+            {
+                File.Delete(path);
+            }
+            string line;
+            for(int i = 0;i < matrix.GetLength(0); i++) 
+            {
+                line = "";
+                for(int j =0;j < matrix.GetLength(1); j++) 
+                {
+                    line += matrix[i,j].ToString();
+                    if (j != matrix.GetLength(1)-1)line += ";";
+                }
+                File.AppendAllText(path, line);
+                if (i < matrix.GetLength(0) - 1) File.AppendAllText(path,Environment.NewLine);
+            }
+            return path;
         }
     }
 }
