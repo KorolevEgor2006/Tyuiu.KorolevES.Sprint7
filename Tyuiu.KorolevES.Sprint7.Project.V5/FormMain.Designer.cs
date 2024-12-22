@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             panelUp_KES = new Panel();
+            buttonSaveFile_KES = new Button();
             buttonDelete_KES = new Button();
             textBoxSearch_KES = new TextBox();
             buttonSearch_KES = new Button();
@@ -51,7 +52,7 @@
             groupBoxStatic_KES = new GroupBox();
             openFileDialogData_KES = new OpenFileDialog();
             saveFileDialogData_KES = new SaveFileDialog();
-            buttonSaveFile_KES = new Button();
+            buttonFilter_KES = new Button();
             panelUp_KES.SuspendLayout();
             panelLeft_KES.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewData_KES).BeginInit();
@@ -59,6 +60,7 @@
             // 
             // panelUp_KES
             // 
+            panelUp_KES.Controls.Add(buttonFilter_KES);
             panelUp_KES.Controls.Add(buttonSaveFile_KES);
             panelUp_KES.Controls.Add(buttonDelete_KES);
             panelUp_KES.Controls.Add(textBoxSearch_KES);
@@ -71,6 +73,16 @@
             panelUp_KES.Name = "panelUp_KES";
             panelUp_KES.Size = new Size(1217, 109);
             panelUp_KES.TabIndex = 0;
+            // 
+            // buttonSaveFile_KES
+            // 
+            buttonSaveFile_KES.Location = new Point(109, 3);
+            buttonSaveFile_KES.Name = "buttonSaveFile_KES";
+            buttonSaveFile_KES.Size = new Size(100, 29);
+            buttonSaveFile_KES.TabIndex = 6;
+            buttonSaveFile_KES.Text = "Сохранить";
+            buttonSaveFile_KES.UseVisualStyleBackColor = true;
+            buttonSaveFile_KES.Click += buttonSaveFile_KES_Click;
             // 
             // buttonDelete_KES
             // 
@@ -234,15 +246,15 @@
             groupBoxStatic_KES.TabStop = false;
             groupBoxStatic_KES.Text = "Статистика";
             // 
-            // buttonSaveFile_KES
+            // buttonFilter_KES
             // 
-            buttonSaveFile_KES.Location = new Point(109, 3);
-            buttonSaveFile_KES.Name = "buttonSaveFile_KES";
-            buttonSaveFile_KES.Size = new Size(100, 29);
-            buttonSaveFile_KES.TabIndex = 6;
-            buttonSaveFile_KES.Text = "Сохранить";
-            buttonSaveFile_KES.UseVisualStyleBackColor = true;
-            buttonSaveFile_KES.Click += buttonSaveFile_KES_Click;
+            buttonFilter_KES.Location = new Point(796, 77);
+            buttonFilter_KES.Name = "buttonFilter_KES";
+            buttonFilter_KES.Size = new Size(104, 29);
+            buttonFilter_KES.TabIndex = 7;
+            buttonFilter_KES.Text = "Фильтр";
+            buttonFilter_KES.UseVisualStyleBackColor = true;
+            buttonFilter_KES.Click += buttonFilter_KES_Click;
             // 
             // FormMain
             // 
@@ -287,5 +299,6 @@
         private Button buttonDelete_KES;
         private Button buttonSaveFile_KES;
         private SaveFileDialog saveFileDialogData_KES;
+        private Button buttonFilter_KES;
     }
 }

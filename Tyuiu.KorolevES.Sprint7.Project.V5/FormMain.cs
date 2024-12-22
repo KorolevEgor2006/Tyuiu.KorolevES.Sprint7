@@ -12,9 +12,19 @@ namespace Tyuiu.KorolevES.Sprint7.Project.V5
             saveFileDialogData_KES.Filter = "Значения, разделенные запятыми(*.csv)|*.csv|Все файлы(*.*)|*.*";
         }
         string pathfileopen;
+        string search ="";
         DataService ds = new DataService();
         public static string[,] matrix = new string[0, 9];
         public static int idrow;
+        public static string[] column0 = new string[] { };
+        public static string[] column1 = new string[] { };
+        public static string[] column2 = new string[] { };
+        public static string[] column3 = new string[] { };
+        public static string[] column4 = new string[] { };
+        public static string[] column5 = new string[] { };
+        public static string[] column6 = new string[] { };
+        public static string[] column7 = new string[] { };
+        public static string[] column8 = new string[] { };
         private void buttonOpenFile_KES_Click(object sender, EventArgs e)
         {
             try
@@ -33,6 +43,16 @@ namespace Tyuiu.KorolevES.Sprint7.Project.V5
 
         public void updateDataGrid(string[,] data)
         {
+            dataGridViewData_KES.EnableHeadersVisualStyles = false;
+            dataGridViewData_KES.Columns[0].HeaderCell.Style.BackColor = Color.White;
+            dataGridViewData_KES.Columns[1].HeaderCell.Style.BackColor = Color.White;
+            dataGridViewData_KES.Columns[2].HeaderCell.Style.BackColor = Color.White;
+            dataGridViewData_KES.Columns[3].HeaderCell.Style.BackColor = Color.White;
+            dataGridViewData_KES.Columns[4].HeaderCell.Style.BackColor = Color.White;
+            dataGridViewData_KES.Columns[5].HeaderCell.Style.BackColor = Color.White;
+            dataGridViewData_KES.Columns[6].HeaderCell.Style.BackColor = Color.White;
+            dataGridViewData_KES.Columns[7].HeaderCell.Style.BackColor = Color.White;
+            dataGridViewData_KES.Columns[8].HeaderCell.Style.BackColor = Color.White;
             matrix = new string[data.GetLength(0), 9];
             matrix = data;
             dataGridViewData_KES.Rows.Clear();
@@ -46,12 +66,14 @@ namespace Tyuiu.KorolevES.Sprint7.Project.V5
                 }
                 dataGridViewData_KES.Rows[i].Cells[9].Value = Convert.ToString(i);
             }
-            if (textBoxSearch_KES.Text != "")
+            
+            string[] values = search.Split(' ');
+            for (int i = 0; i < dataGridViewData_KES.RowCount; i++)
             {
-                string[] values = textBoxSearch_KES.Text.Split(' ');
-                for (int i = 0; i < dataGridViewData_KES.RowCount; i++)
+                int k = 1;
+                if (search != "")
                 {
-                    int k = 0;
+                    k = 0;
                     for (int j = 0; j < 9; j++)
                     {
                         foreach (string value in values)
@@ -64,11 +86,97 @@ namespace Tyuiu.KorolevES.Sprint7.Project.V5
                             }
                         }
                     }
-                    if (k == 0) dataGridViewData_KES.Rows[i].Visible = false;
                 }
+                int kk = FilterUse(i, k);
+                if (kk == 0) dataGridViewData_KES.Rows[i].Visible = false;
+
             }
         }
+        public int FilterUse(int i, int k)
+        { 
+            foreach (string value in column0)
+            {
+                if (dataGridViewData_KES.Rows[i].Cells[0].Value.ToString() == value)
+                {
+                    dataGridViewData_KES.Columns[0].HeaderCell.Style.BackColor = Color.LightYellow;
+                    
+                    k = 0;
+                }
+            }
+            foreach (string value in column1)
+            {
+                if (dataGridViewData_KES.Rows[i].Cells[1].Value.ToString() == value)
+                {
+                    dataGridViewData_KES.Columns[1].HeaderCell.Style.BackColor = Color.LightYellow;
 
+                    k = 0;
+                }
+            }
+            foreach (string value in column2)
+            {
+                if (dataGridViewData_KES.Rows[i].Cells[2].Value.ToString() == value)
+                {
+                    dataGridViewData_KES.Columns[2].HeaderCell.Style.BackColor = Color.LightYellow;
+
+                    k = 0;
+                }
+            }
+            foreach (string value in column3)
+            {
+                if (dataGridViewData_KES.Rows[i].Cells[3].Value.ToString() == value)
+                {
+                    dataGridViewData_KES.Columns[3].HeaderCell.Style.BackColor = Color.LightYellow;
+
+                    k = 0;
+                }
+            }
+            foreach (string value in column4)
+            {
+                if (dataGridViewData_KES.Rows[i].Cells[4].Value.ToString() == value)
+                {
+                    dataGridViewData_KES.Columns[4].HeaderCell.Style.BackColor = Color.LightYellow;
+
+                    k = 0;
+                }
+            }
+            foreach (string value in column5)
+            {
+                if (dataGridViewData_KES.Rows[i].Cells[5].Value.ToString() == value)
+                {
+                    dataGridViewData_KES.Columns[5].HeaderCell.Style.BackColor = Color.LightYellow;
+
+                    k = 0;
+                }
+            }
+            foreach (string value in column6)
+            {
+                if (dataGridViewData_KES.Rows[i].Cells[6].Value.ToString() == value)
+                {
+                    dataGridViewData_KES.Columns[6].HeaderCell.Style.BackColor = Color.LightYellow;
+
+                    k = 0;
+                }
+            }
+            foreach (string value in column7)
+            {
+                if (dataGridViewData_KES.Rows[i].Cells[7].Value.ToString() == value)
+                {
+                    dataGridViewData_KES.Columns[7].HeaderCell.Style.BackColor = Color.LightYellow;
+
+                    k = 0;
+                }
+            }
+            foreach (string value in column8)
+            {
+                if (dataGridViewData_KES.Rows[i].Cells[8].Value.ToString() == value)
+                {
+                    dataGridViewData_KES.Columns[8].HeaderCell.Style.BackColor = Color.LightYellow;
+
+                    k = 0;
+                }
+            }
+            return k;
+        }
 
         private void buttonAdd_KES_Click(object sender, EventArgs e)
         {
@@ -98,8 +206,8 @@ namespace Tyuiu.KorolevES.Sprint7.Project.V5
 
         private void buttonSearch_KES_Click(object sender, EventArgs e)
         {
+            search = textBoxSearch_KES.Text;
             updateDataGrid(matrix);
-
         }
 
         private void buttonDelete_KES_Click(object sender, EventArgs e)
@@ -124,18 +232,83 @@ namespace Tyuiu.KorolevES.Sprint7.Project.V5
                 saveFileDialogData_KES.FileName = "Оптовая_база.csv";
                 saveFileDialogData_KES.InitialDirectory = Directory.GetCurrentDirectory();
                 saveFileDialogData_KES.ShowDialog();
-                string path =ds.SaveFromFile(matrix,saveFileDialogData_KES.FileName);
-                if (MessageBox.Show("Открыть сохраненный файл:" +path,"Открыть файл?",MessageBoxButtons.YesNo,MessageBoxIcon.Question)==DialogResult.Yes) 
+                string path = ds.SaveFromFile(matrix, saveFileDialogData_KES.FileName);
+                if (MessageBox.Show("Открыть сохраненный файл:" + path, "Открыть файл?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     System.Diagnostics.Process csv = new System.Diagnostics.Process();
                     csv.StartInfo.FileName = "explorer.exe";
                     csv.StartInfo.Arguments = path;
                     csv.Start();
-                } 
+                }
             }
             catch
             {
                 MessageBox.Show("Неудалось сохранить файл", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        public void columnSet(string[] mass) 
+        {
+            if(idrow == 0)
+            {
+                column0 = new string[mass.Length];
+                column0 = mass;
+            }
+            if (idrow == 1)
+            {
+                column1 = new string[mass.Length];
+                column1 = mass;
+            }
+            if (idrow == 2)
+            {
+                column2 = new string[mass.Length];
+                column2 = mass;
+            }
+            if (idrow == 3)
+            {
+                column3 = new string[mass.Length];
+                column3 = mass;
+            }
+            if (idrow == 4)
+            {
+                column4 = new string[mass.Length];
+                column4 = mass;
+            }
+            if (idrow == 5)
+            {
+                column5 = new string[mass.Length];
+                column5 = mass;
+            }
+            if (idrow == 6)
+            {
+                column6 = new string[mass.Length];
+                column6 = mass;
+            }
+            if (idrow == 7)
+            {
+                column7 = new string[mass.Length];
+                column7 = mass;
+            }
+            if (idrow == 8)
+            {
+                column8 = new string[mass.Length];
+                column8 = mass;
+            }
+            updateDataGrid(matrix);
+        }
+        private void buttonFilter_KES_Click(object sender, EventArgs e)
+        {
+            
+            try
+            {
+                FormFilter formFilter = new FormFilter();
+                idrow = Convert.ToInt32(dataGridViewData_KES.CurrentCellAddress.X);
+                if(!((idrow>=0)&&(idrow<=8)))idrow= 0;
+                formFilter.ShowDialog();
+                columnSet(formFilter.result);
+            }
+            catch
+            {
+
             }
         }
     }

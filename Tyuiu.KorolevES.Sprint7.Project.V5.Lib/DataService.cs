@@ -108,5 +108,24 @@ namespace Tyuiu.KorolevES.Sprint7.Project.V5.Lib
             }
             return path;
         }
+        public string[] MassFilterGive(string[,] matrix,int numcolumn) 
+        {
+            string[] res = new string[matrix.GetLength(0)];
+            int ii= 0;
+            for (int i = 0; i < matrix.GetLength(0); i++)
+            {
+                if (!(res.Contains(matrix[i, numcolumn])))
+                {
+                    res[ii] = matrix[i, numcolumn];
+                    ii++;
+                }
+            }
+            string[] result = new string[ii];
+            for (int i = 0; i < ii; i++) 
+            {
+                result[i]=res[i];
+            }
+            return result;
+        }
     }
 }
