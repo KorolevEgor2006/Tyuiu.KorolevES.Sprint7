@@ -136,18 +136,18 @@ namespace Tyuiu.KorolevES.Sprint7.Project.V5
         private void buttonSearch_KES_Click(object sender, EventArgs e)
         {
             search = textBoxSearch_KES.Text;
-            if (search != "")
+            
+            
+            for (int i = 0; i < filter.Length; i++)
             {
-                for (int i = 0; i < filter.Length; i++)
+                string[] values = search.Split(" ");
+                foreach (string value in values)
                 {
-                    string[] values = search.Split(" ");
-                    foreach (string value in values)
-                    {
-                        if ((filter[i].Contains(value))) dataGridViewFilter_KES.Rows[i].Visible = true;
-                        else dataGridViewFilter_KES.Rows[i].Visible = false;
-                    }
+                    if (((dataGridViewFilter_KES.Rows[i].Cells[0].Value.ToString()).Contains(value))) dataGridViewFilter_KES.Rows[i].Visible = true;
+                    else dataGridViewFilter_KES.Rows[i].Visible = false;
                 }
             }
+            
         }
     }
 }

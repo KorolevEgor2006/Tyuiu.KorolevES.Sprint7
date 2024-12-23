@@ -12,7 +12,7 @@ namespace Tyuiu.KorolevES.Sprint7.Project.V5
             saveFileDialogData_KES.Filter = "Значения, разделенные запятыми(*.csv)|*.csv|Все файлы(*.*)|*.*";
         }
         string pathfileopen;
-        string search ="";
+        string search = "";
         DataService ds = new DataService();
         public static string[,] matrix = new string[0, 9];
         public static int idrow;
@@ -66,7 +66,7 @@ namespace Tyuiu.KorolevES.Sprint7.Project.V5
                 }
                 dataGridViewData_KES.Rows[i].Cells[9].Value = Convert.ToString(i);
             }
-            
+
             string[] values = search.Split(' ');
             for (int i = 0; i < dataGridViewData_KES.RowCount; i++)
             {
@@ -93,13 +93,13 @@ namespace Tyuiu.KorolevES.Sprint7.Project.V5
             }
         }
         public int FilterUse(int i, int k)
-        { 
+        {
             foreach (string value in column0)
             {
                 if (dataGridViewData_KES.Rows[i].Cells[0].Value.ToString() == value)
                 {
                     dataGridViewData_KES.Columns[0].HeaderCell.Style.BackColor = Color.LightYellow;
-                    
+
                     k = 0;
                 }
             }
@@ -246,9 +246,9 @@ namespace Tyuiu.KorolevES.Sprint7.Project.V5
                 MessageBox.Show("Неудалось сохранить файл", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        public void columnSet(string[] mass) 
+        public void columnSet(string[] mass)
         {
-            if(idrow == 0)
+            if (idrow == 0)
             {
                 column0 = new string[mass.Length];
                 column0 = mass;
@@ -297,12 +297,12 @@ namespace Tyuiu.KorolevES.Sprint7.Project.V5
         }
         private void buttonFilter_KES_Click(object sender, EventArgs e)
         {
-            
+
             try
             {
                 FormFilter formFilter = new FormFilter();
                 idrow = Convert.ToInt32(dataGridViewData_KES.CurrentCellAddress.X);
-                if(!((idrow>=0)&&(idrow<=8)))idrow= 0;
+                if (!((idrow >= 0) && (idrow <= 8))) idrow = 0;
                 formFilter.ShowDialog();
                 columnSet(formFilter.result);
             }
@@ -310,6 +310,21 @@ namespace Tyuiu.KorolevES.Sprint7.Project.V5
             {
 
             }
+        }
+
+        private void buttonRefreshFilter_KES_Click(object sender, EventArgs e)
+        {
+            search = "";
+            column0 = new string[] { };
+            column1 = new string[] { };
+            column2 = new string[] { }; 
+            column3 = new string[] { };
+            column4 = new string[] { };
+            column5 = new string[] { };
+            column6 = new string[] { };
+            column7 = new string[] { };
+            column8 = new string[] { };
+            updateDataGrid(matrix);
         }
     }
 }

@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             panelUp_KES = new Panel();
+            buttonRefreshFilter_KES = new Button();
+            buttonFilter_KES = new Button();
             buttonSaveFile_KES = new Button();
             buttonDelete_KES = new Button();
             textBoxSearch_KES = new TextBox();
@@ -52,7 +54,6 @@
             groupBoxStatic_KES = new GroupBox();
             openFileDialogData_KES = new OpenFileDialog();
             saveFileDialogData_KES = new SaveFileDialog();
-            buttonFilter_KES = new Button();
             panelUp_KES.SuspendLayout();
             panelLeft_KES.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewData_KES).BeginInit();
@@ -60,6 +61,7 @@
             // 
             // panelUp_KES
             // 
+            panelUp_KES.Controls.Add(buttonRefreshFilter_KES);
             panelUp_KES.Controls.Add(buttonFilter_KES);
             panelUp_KES.Controls.Add(buttonSaveFile_KES);
             panelUp_KES.Controls.Add(buttonDelete_KES);
@@ -71,8 +73,28 @@
             panelUp_KES.Dock = DockStyle.Top;
             panelUp_KES.Location = new Point(0, 0);
             panelUp_KES.Name = "panelUp_KES";
-            panelUp_KES.Size = new Size(1217, 109);
+            panelUp_KES.Size = new Size(1217, 98);
             panelUp_KES.TabIndex = 0;
+            // 
+            // buttonRefreshFilter_KES
+            // 
+            buttonRefreshFilter_KES.Location = new Point(327, 24);
+            buttonRefreshFilter_KES.Name = "buttonRefreshFilter_KES";
+            buttonRefreshFilter_KES.Size = new Size(189, 29);
+            buttonRefreshFilter_KES.TabIndex = 8;
+            buttonRefreshFilter_KES.Text = "Сбросить все фильтры";
+            buttonRefreshFilter_KES.UseVisualStyleBackColor = true;
+            buttonRefreshFilter_KES.Click += buttonRefreshFilter_KES_Click;
+            // 
+            // buttonFilter_KES
+            // 
+            buttonFilter_KES.Location = new Point(522, 24);
+            buttonFilter_KES.Name = "buttonFilter_KES";
+            buttonFilter_KES.Size = new Size(104, 29);
+            buttonFilter_KES.TabIndex = 7;
+            buttonFilter_KES.Text = "Фильтр";
+            buttonFilter_KES.UseVisualStyleBackColor = true;
+            buttonFilter_KES.Click += buttonFilter_KES_Click;
             // 
             // buttonSaveFile_KES
             // 
@@ -96,14 +118,14 @@
             // 
             // textBoxSearch_KES
             // 
-            textBoxSearch_KES.Location = new Point(906, 81);
+            textBoxSearch_KES.Location = new Point(327, 59);
             textBoxSearch_KES.Name = "textBoxSearch_KES";
             textBoxSearch_KES.Size = new Size(189, 23);
             textBoxSearch_KES.TabIndex = 4;
             // 
             // buttonSearch_KES
             // 
-            buttonSearch_KES.Location = new Point(1101, 77);
+            buttonSearch_KES.Location = new Point(522, 56);
             buttonSearch_KES.Name = "buttonSearch_KES";
             buttonSearch_KES.Size = new Size(104, 29);
             buttonSearch_KES.TabIndex = 3;
@@ -146,15 +168,15 @@
             panelLeft_KES.Controls.Add(splitterUpAndDownDataPanel_KES);
             panelLeft_KES.Controls.Add(dataGridViewData_KES);
             panelLeft_KES.Dock = DockStyle.Left;
-            panelLeft_KES.Location = new Point(0, 109);
+            panelLeft_KES.Location = new Point(0, 98);
             panelLeft_KES.Name = "panelLeft_KES";
-            panelLeft_KES.Size = new Size(903, 228);
+            panelLeft_KES.Size = new Size(903, 239);
             panelLeft_KES.TabIndex = 1;
             // 
             // splitterUpAndDownDataPanel_KES
             // 
             splitterUpAndDownDataPanel_KES.Dock = DockStyle.Bottom;
-            splitterUpAndDownDataPanel_KES.Location = new Point(0, 225);
+            splitterUpAndDownDataPanel_KES.Location = new Point(0, 236);
             splitterUpAndDownDataPanel_KES.Name = "splitterUpAndDownDataPanel_KES";
             splitterUpAndDownDataPanel_KES.Size = new Size(903, 3);
             splitterUpAndDownDataPanel_KES.TabIndex = 2;
@@ -172,7 +194,7 @@
             dataGridViewData_KES.ReadOnly = true;
             dataGridViewData_KES.RowHeadersVisible = false;
             dataGridViewData_KES.ScrollBars = ScrollBars.Vertical;
-            dataGridViewData_KES.Size = new Size(903, 228);
+            dataGridViewData_KES.Size = new Size(903, 239);
             dataGridViewData_KES.TabIndex = 0;
             // 
             // codeProduct
@@ -246,16 +268,6 @@
             groupBoxStatic_KES.TabStop = false;
             groupBoxStatic_KES.Text = "Статистика";
             // 
-            // buttonFilter_KES
-            // 
-            buttonFilter_KES.Location = new Point(796, 77);
-            buttonFilter_KES.Name = "buttonFilter_KES";
-            buttonFilter_KES.Size = new Size(104, 29);
-            buttonFilter_KES.TabIndex = 7;
-            buttonFilter_KES.Text = "Фильтр";
-            buttonFilter_KES.UseVisualStyleBackColor = true;
-            buttonFilter_KES.Click += buttonFilter_KES_Click;
-            // 
             // FormMain
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -300,5 +312,6 @@
         private Button buttonSaveFile_KES;
         private SaveFileDialog saveFileDialogData_KES;
         private Button buttonFilter_KES;
+        private Button buttonRefreshFilter_KES;
     }
 }
