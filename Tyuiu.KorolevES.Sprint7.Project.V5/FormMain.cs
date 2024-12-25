@@ -1,5 +1,6 @@
 using Tyuiu.KorolevES.Sprint7.Project.V5.Lib;
 using System.IO;
+using System.Data;
 using static System.Windows.Forms.DataFormats;
 namespace Tyuiu.KorolevES.Sprint7.Project.V5
 {
@@ -68,7 +69,7 @@ namespace Tyuiu.KorolevES.Sprint7.Project.V5
             }
 
             string[] values = search.Split(' ');
-            for (int i = 0; i < dataGridViewData_KES.RowCount; i++)
+            for (int i = dataGridViewData_KES.RowCount - 1; i > -1; i--)
             {
                 int k = 1;
                 if (search != "")
@@ -88,11 +89,12 @@ namespace Tyuiu.KorolevES.Sprint7.Project.V5
                     }
                 }
                 int kk = FilterUse(i, k);
-                if (kk == 0) dataGridViewData_KES.Rows[i].Visible = false;
+                if (kk == 0) dataGridViewData_KES.Rows.RemoveAt(i);
 
             }
         }
-        public int FilterUse(int i, int k)
+
+        private int FilterUse(int i, int k)
         {
             foreach (string value in column0)
             {
@@ -317,7 +319,7 @@ namespace Tyuiu.KorolevES.Sprint7.Project.V5
             search = "";
             column0 = new string[] { };
             column1 = new string[] { };
-            column2 = new string[] { }; 
+            column2 = new string[] { };
             column3 = new string[] { };
             column4 = new string[] { };
             column5 = new string[] { };
@@ -325,6 +327,133 @@ namespace Tyuiu.KorolevES.Sprint7.Project.V5
             column7 = new string[] { };
             column8 = new string[] { };
             updateDataGrid(matrix);
+        }
+
+        private void FormMain_Load(object sender, EventArgs e)
+        {
+            dataGridViewData_KES.Columns[0].Width = 60;
+            dataGridViewData_KES.Columns[1].Width = 110;
+            dataGridViewData_KES.Columns[2].Width = 85;
+            dataGridViewData_KES.Columns[3].Width = 85;
+            dataGridViewData_KES.Columns[4].Width = 400;
+            dataGridViewData_KES.Columns[6].Width = 200;
+        }
+
+        private void dataGridViewData_KES_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                int columnSet = dataGridViewData_KES.CurrentCellAddress.X;
+                chartColumnSet_KES.Titles.Clear();
+                chartColumnSet_KES.Titles.Add(dataGridViewData_KES.Columns[columnSet].HeaderText);
+                chartColumnSet_KES.Series[0].Points.Clear();
+                chartColumnSet_KES.ChartAreas[0].AxisY.Title = "Значение";
+                chartColumnSet_KES.ChartAreas[0].AxisX.Title = "Номер строки";
+                textBoxCountElements_KES.Text = dataGridViewData_KES.RowCount.ToString();
+                if ((columnSet == 2) || (columnSet == 3) || (columnSet == 7) || (columnSet == 8))
+                {
+                    int[] columnStatistic = new int[dataGridViewData_KES.RowCount];
+                    for (int i = 0; i < dataGridViewData_KES.RowCount; i++)
+                    {
+                        string value = dataGridViewData_KES.Rows[i].Cells[columnSet].Value.ToString();
+                        if (columnSet == 7) value = value.Replace("-", "");
+                        columnStatistic[i] = Convert.ToInt32(value);
+                        chartColumnSet_KES.Series[0].Points.AddXY(i, columnStatistic[i]);
+
+                    }
+                    Array.Sort(columnStatistic);
+
+                    if (columnSet == 7)
+                    {
+                        string value = columnStatistic[0].ToString().Insert(4, " ");
+                        value = value.Insert(7, " ");
+                        textBoxMinValue_KES.Text = (DateTime.Parse(value)).ToString("yyyy-MM-dd");
+                        value = columnStatistic[columnStatistic.Length - 1].ToString().Insert(4, " ");
+                        value = value.Insert(7, " ");
+                        textBoxMaxValue_KES.Text = (DateTime.Parse(value)).ToString("yyyy-MM-dd");
+                        textBoxSum_KES.Text = "-";
+                        textBoxMeanValue_KES.Text = "-";
+                    }
+                    else
+                    {
+                        textBoxMinValue_KES.Text = columnStatistic[0].ToString();
+                        textBoxMaxValue_KES.Text = columnStatistic[columnStatistic.Length - 1].ToString();
+                        double sum = 0;
+                        for (int i = 0; i < columnStatistic.Length; i++)
+                        {
+                            sum += columnStatistic[i];
+                        }
+                        textBoxSum_KES.Text = sum.ToString();
+                        textBoxMeanValue_KES.Text = Math.Round(sum / columnStatistic.Length, 3).ToString();
+                    }
+                }
+                else
+                {
+                    textBoxMaxValue_KES.Text = "-";
+                    textBoxMinValue_KES.Text = "-";
+                    textBoxSum_KES.Text = "-";
+                    textBoxMeanValue_KES.Text = "-";
+                }
+
+            }
+            catch { }
+        }
+
+        private void buttonOpenFile_KES_MouseEnter(object sender, EventArgs e)
+        {
+            toolTipButton_KES.ToolTipTitle = "Открыть файл";
+        }
+
+        private void buttonSaveFile_KES_MouseEnter(object sender, EventArgs e)
+        {
+            toolTipButton_KES.ToolTipTitle = "Сохранить файл";
+        }
+
+        private void buttonAdd_KES_MouseEnter(object sender, EventArgs e)
+        {
+            toolTipButton_KES.ToolTipTitle = "Добавить строку";
+        }
+
+        private void buttonEdit_KES_MouseEnter(object sender, EventArgs e)
+        {
+            toolTipButton_KES.ToolTipTitle = "Изменить строку";
+        }
+
+        private void buttonDelete_KES_MouseEnter(object sender, EventArgs e)
+        {
+            toolTipButton_KES.ToolTipTitle = "Удалить строку";
+        }
+
+        private void buttonFilter_KES_MouseEnter(object sender, EventArgs e)
+        {
+            toolTipButton_KES.ToolTipTitle = "Фильтр";
+        }
+
+        private void buttonSearch_KES_MouseEnter(object sender, EventArgs e)
+        {
+            toolTipButton_KES.ToolTipTitle = "Поиск";
+        }
+
+        private void buttonInfo_KES_Click(object sender, EventArgs e)
+        {
+            FormAbout formAbout = new FormAbout();
+            formAbout.ShowDialog();
+        }
+
+        private void buttonInfo_KES_MouseEnter(object sender, EventArgs e)
+        {
+            toolTipButton_KES.ToolTipTitle = "Справка";
+        }
+
+        private void buttonManual_KES_Click(object sender, EventArgs e)
+        {
+            FormManual formManual = new FormManual();
+            formManual.ShowDialog();
+        }
+
+        private void buttonManual_KES_MouseEnter(object sender, EventArgs e)
+        {
+            toolTipButton_KES.ToolTipTitle = "Руководство";
         }
     }
 }

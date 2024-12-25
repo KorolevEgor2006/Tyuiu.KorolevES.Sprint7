@@ -54,13 +54,13 @@
             // 
             // Element
             // 
-            Element.HeaderText = "Фильтр значений";
+            Element.HeaderText = "Значения";
             Element.Name = "Element";
             Element.ReadOnly = true;
             // 
             // CheckElement
             // 
-            CheckElement.HeaderText = "Установить";
+            CheckElement.HeaderText = "Фильтр";
             CheckElement.Name = "CheckElement";
             // 
             // buttonSetAll_KES
@@ -89,7 +89,7 @@
             buttonSetFilter_KES.Name = "buttonSetFilter_KES";
             buttonSetFilter_KES.Size = new Size(92, 23);
             buttonSetFilter_KES.TabIndex = 3;
-            buttonSetFilter_KES.Text = "Установить";
+            buttonSetFilter_KES.Text = "Применить";
             buttonSetFilter_KES.UseVisualStyleBackColor = true;
             buttonSetFilter_KES.Click += buttonSetFilter_KES_Click;
             // 
@@ -107,16 +107,17 @@
             // 
             textBoxSearch_KES.Location = new Point(12, 14);
             textBoxSearch_KES.Name = "textBoxSearch_KES";
-            textBoxSearch_KES.Size = new Size(135, 23);
+            textBoxSearch_KES.Size = new Size(164, 23);
             textBoxSearch_KES.TabIndex = 5;
             // 
             // buttonSearch_KES
             // 
-            buttonSearch_KES.Location = new Point(153, 14);
+            buttonSearch_KES.BackgroundImage = Properties.Resources.find;
+            buttonSearch_KES.BackgroundImageLayout = ImageLayout.Stretch;
+            buttonSearch_KES.Location = new Point(182, 12);
             buttonSearch_KES.Name = "buttonSearch_KES";
-            buttonSearch_KES.Size = new Size(62, 23);
+            buttonSearch_KES.Size = new Size(33, 25);
             buttonSearch_KES.TabIndex = 6;
-            buttonSearch_KES.Text = "Поиск";
             buttonSearch_KES.UseVisualStyleBackColor = true;
             buttonSearch_KES.Click += buttonSearch_KES_Click;
             // 
@@ -132,7 +133,11 @@
             Controls.Add(buttonNoSetAll_KES);
             Controls.Add(buttonSetAll_KES);
             Controls.Add(dataGridViewFilter_KES);
+            FormBorderStyle = FormBorderStyle.FixedDialog;
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "FormFilter";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Настроить фильтр";
             Load += FormFilter_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridViewFilter_KES).EndInit();
@@ -143,13 +148,13 @@
         #endregion
 
         private DataGridView dataGridViewFilter_KES;
-        private DataGridViewTextBoxColumn Element;
-        private DataGridViewCheckBoxColumn CheckElement;
         private Button buttonSetAll_KES;
         private Button buttonNoSetAll_KES;
         private Button buttonSetFilter_KES;
         private Button buttonClose_KES;
         private TextBox textBoxSearch_KES;
         private Button buttonSearch_KES;
+        private DataGridViewTextBoxColumn Element;
+        private DataGridViewCheckBoxColumn CheckElement;
     }
 }

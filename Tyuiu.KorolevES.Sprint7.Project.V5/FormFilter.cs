@@ -71,10 +71,6 @@ namespace Tyuiu.KorolevES.Sprint7.Project.V5
                 column = new string[FormMain.column8.Length];
                 column = FormMain.column8;
             }
-            if (column == null)
-            {
-                column = new string[1] { "1" };
-            }
             filter = new string[ds.MassFilterGive(FormMain.matrix, FormMain.idrow).Length];
             filter = ds.MassFilterGive(FormMain.matrix, FormMain.idrow);
             for (int i = 0; i < filter.Length; i++)
