@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             dataGridViewFilter_KES = new DataGridView();
             Element = new DataGridViewTextBoxColumn();
             CheckElement = new DataGridViewCheckBoxColumn();
@@ -37,6 +38,7 @@
             buttonClose_KES = new Button();
             textBoxSearch_KES = new TextBox();
             buttonSearch_KES = new Button();
+            toolTipFilter_KES = new ToolTip(components);
             ((System.ComponentModel.ISupportInitialize)dataGridViewFilter_KES).BeginInit();
             SuspendLayout();
             // 
@@ -118,8 +120,13 @@
             buttonSearch_KES.Name = "buttonSearch_KES";
             buttonSearch_KES.Size = new Size(33, 25);
             buttonSearch_KES.TabIndex = 6;
+            toolTipFilter_KES.SetToolTip(buttonSearch_KES, "Поиск по значениям фильтра.");
             buttonSearch_KES.UseVisualStyleBackColor = true;
             buttonSearch_KES.Click += buttonSearch_KES_Click;
+            // 
+            // toolTipFilter_KES
+            // 
+            toolTipFilter_KES.ToolTipTitle = "Поиск";
             // 
             // FormFilter
             // 
@@ -156,5 +163,6 @@
         private Button buttonSearch_KES;
         private DataGridViewTextBoxColumn Element;
         private DataGridViewCheckBoxColumn CheckElement;
+        private ToolTip toolTipFilter_KES;
     }
 }
