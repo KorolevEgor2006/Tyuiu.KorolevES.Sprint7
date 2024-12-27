@@ -235,10 +235,10 @@ namespace Tyuiu.KorolevES.Sprint7.Project.V5
                 saveFileDialogData_KES.InitialDirectory = Directory.GetCurrentDirectory();
                 saveFileDialogData_KES.ShowDialog();
                 string path = ds.SaveFromFile(matrix, saveFileDialogData_KES.FileName);
-                if (MessageBox.Show("Открыть сохраненный файл:" + path, "Открыть файл?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                if (MessageBox.Show("Открыть сохраненный файл в блокноте:" + path, "Открыть файл?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     System.Diagnostics.Process csv = new System.Diagnostics.Process();
-                    csv.StartInfo.FileName = "explorer.exe";
+                    csv.StartInfo.FileName = "notepad.exe";
                     csv.StartInfo.Arguments = path;
                     csv.Start();
                 }
